@@ -13,3 +13,7 @@ answer=session_launch.run(product)
 print("The calculated value is ",answer)
 session_launch.close()
 
+#creating tensor with random values
+randomValues=tf.random_normal([4,5])
+session_launch=tf.Session()
+session_launch.run(randomValues)
