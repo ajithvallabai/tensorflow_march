@@ -17,3 +17,5 @@ session_launch.close()
 randomValues=tf.random_normal([4,5])
 session_launch=tf.Session()
 session_launch.run(randomValues)
+
+session_launch.close()
