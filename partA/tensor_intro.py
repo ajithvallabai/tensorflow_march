@@ -19,3 +19,28 @@ session_launch=tf.Session()
 session_launch.run(randomValues)
 
 session_launch.close()
+
+
+a=tf.constant(20,name="a")
+b=tf.constant(30,name="b")
+
+x=tf.add(a,b,name="addition")
+y=tf.add(a,b,name="division")
+
+#method one to use sess
+sess=tf.Session()
+
+result_one=sess.run(x)
+result_two=sess.run(y)
+print("The result of addition is",result_one)
+print("The result of addition is",result_two)
+sess.close()
+
+
+#method two to use sess
+sess=tf.Session()
+with tf.Session() as sess:
+    print("The answer of addition is",sess.run(x))
+    print("The answer of addition is",sess.run(y))
+
+sess.close()
