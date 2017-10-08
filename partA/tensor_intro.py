@@ -37,6 +37,24 @@ print("The result of addition is",result_two)
 sess.close()
 
 
+#initialising random values with standard deviation
+
+r=tf.random_normal([2,3,stddev=5])
+
+#print the values
+tf.random_normal([2,3,stddev=5])
+
+#verification
+A_test=["add all those values"]
+statistics.stdev(A_test)
+
+
+#to view values
+xx=np.arange(10)
+tt=xx*4+2
+c=tf.squared_difference(xx,tt)
+sess.run(c)
+
 #method two to use sess
 sess=tf.Session()
 with tf.Session() as sess:
