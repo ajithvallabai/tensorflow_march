@@ -1,1 +1,1 @@
-Kindly ignore this folder partA
+ignore this folder partA
