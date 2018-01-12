@@ -13,16 +13,8 @@ train_X=numpy.asarray([2104.0,1416.0,1534.0,852.0])
 #train_X=area of the house in square feet
 train_Y=numpy.asarray([460.0,232.0,315.0,178.0])
 #train_Y=housing prices
-'''
-#Dataset
-train_X = numpy.asarray([3.3,4.4,5.5,6.71,6.93,4.168,9.779,6.182,7.59,2.167,
-                         7.042,10.791,5.313,7.997,5.654,9.27,3.1])
-train_Y = numpy.asarray([1.7,2.76,2.09,3.19,1.694,1.573,3.366,2.596,2.53,1.221,
-                         2.827,3.465,1.65,2.904,2.42,2.94,1.3])
-                         
-30.00,40.00,50.00,60.00,70.00,80.00,90.00,100.00,110.00,120.00,130.00,140.00,150.00
-5.00,6.00,7.00,8.00,9.00,10.00,11.00,12.00,13.00,14.00,15.00,16.00,17.00                    
-'''
+
+
 
 
 m=train_X.shape[0]
@@ -30,8 +22,8 @@ m=train_X.shape[0]
 X=tf.placeholder("float")
 Y=tf.placeholder("float")
 
-W=tf.Variable(0.18,name="weight")
-b=tf.Variable(-40.0,name="bias")
+W=tf.Variable(0.0,name="weight")
+b=tf.Variable(0.0,name="bias")
 
 hypothesis=tf.add(tf.multiply(X,W),b)
 
@@ -69,3 +61,19 @@ with tf.Session() as sess:
 #524.406 -- 0.0000001 -- 2000
 #524.405 --- 3000
 #524.308 --- 3000 - 0.00000001
+
+    test_X = numpy.asarray([900.0, 2000.0, 1500.0])
+    test_Y = numpy.asarray([185.0, 440.0, 250.0])
+
+    print("Testing... (Mean square loss Comparison)")
+    testing_cost = sess.run(
+        tf.reduce_sum(tf.pow(hypothesis - Y, 2)) / (2 * test_X.shape[0]),
+        feed_dict={X: test_X, Y: test_Y})  
+    print("Testing cost=", testing_cost)
+    print("Absolute mean square loss difference:", abs(
+        training_cost - testing_cost))
+
+    plt.plot(test_X, test_Y, 'bo', label='Testing data')
+    plt.plot(train_X, sess.run(W) * train_X + sess.run(b), label='Fitted line')
+    plt.legend()
+    plt.show()
